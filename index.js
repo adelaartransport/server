@@ -4,7 +4,9 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const path = require("path");
+const cors = require("cors"); // Import the CORS package
 
+ 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +15,7 @@ app.use(express.json()); // This will parse incoming JSON payloads
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-
+app.use(cors());
 app.use(
   session({
     secret: "your-secret-key",
